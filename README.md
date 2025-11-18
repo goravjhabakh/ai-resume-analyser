@@ -1,99 +1,118 @@
-# Welcome to React Router!
+# AI Resume Analyser
 
-A modern, production-ready template for building full-stack React applications using React Router.
-
-[![Open in StackBlitz](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/github/remix-run/react-router-templates/tree/main/default)
+AI Resume Analyser is a web application that evaluates resumes using Puter AI.  
+Users can upload their resume, provide job details, and receive structured feedback, ATS scoring, suggestions, and a preview of the resume.  
+The project is built with React, TypeScript, TailwindCSS, Zustand, and the full Puter platform (Auth, FS, AI, KV).
 
 ## Features
 
-- 🚀 Server-side rendering
-- ⚡️ Hot Module Replacement (HMR)
-- 📦 Asset bundling and optimization
-- 🔄 Data loading and mutations
-- 🔒 TypeScript by default
-- 🎉 TailwindCSS for styling
-- 📖 [React Router docs](https://reactrouter.com/)
+### Authentication (Puter Auth)
 
-## Getting Started
+- Sign-in and sign-out handled through Puter Auth.
+- Automatic session check on page load.
+- Resume review pages are protected and require authentication.
 
-### Installation
+### Resume Upload
 
-Install the dependencies:
+- Users can upload a PDF resume through a drag-and-drop UI.
+- File validation for size and format.
+- Uploaded files are stored using Puter FS.
+
+### PDF to Image Conversion
+
+- The uploaded PDF is converted to a high-quality PNG for preview.
+- Converted images are also stored on Puter FS.
+
+### AI Resume Feedback
+
+The system uses GPT-5.1 via Puter AI to analyse resumes.  
+Feedback includes:
+
+- A summary of the resume.
+- ATS (Applicant Tracking System) score.
+- Strengths and weaknesses.
+- Job-specific suggestions.
+- Structured JSON response shown in the UI.
+
+### Persistent Storage (KV Database)
+
+Each resume analysis is stored as an entry in the Puter KV database containing:
+
+- Resume path  
+- Image preview path  
+- Company name  
+- Job title  
+- Job description  
+- AI-generated feedback  
+- A unique ID for retrieval  
+
+### User Interface
+
+- Responsive layout with TailwindCSS.
+- Sticky resume preview.
+- Detailed analysis components.
+- Animated ATS score gauge.
+- Clean, minimal design.
+
+## Tech Stack
+
+### Frontend
+
+- React  
+- TypeScript  
+- React Router  
+- TailwindCSS (v4)  
+- tw-animate-css  
+- Zustand State Management  
+
+### Backend (via Puter)
+
+- Puter Auth  
+- Puter FS  
+- Puter AI  
+- Puter KV  
+
+### Utilities
+
+- pdfjs-dist for PDF → PNG conversion  
+- UUID-based resume entry system  
+
+## Setup Instructions
+
+### 1. Install dependencies
 
 ```bash
 npm install
 ```
 
-### Development
+### 2. Load Puter.js
 
-Start the development server with HMR:
+Add to index.html:
+
+```html
+<script src="https://js.puter.com/v2/"></script>
+```
+
+### 3. Run development server
 
 ```bash
 npm run dev
 ```
 
-Your application will be available at `http://localhost:5173`.
+## Usage Flow
 
-## Building for Production
+1. User signs in with Puter Auth.  
+2. User uploads a resume PDF.  
+3. PDF is stored in Puter FS and converted into an image.  
+4. Image is stored in Puter FS.  
+5. Resume + job details are analysed by Puter AI.  
+6. Feedback is stored in KV.  
+7. Analysis page shows preview + structured feedback.  
 
-Create a production build:
+## Future Improvements
 
-```bash
-npm run build
-```
-
-## Deployment
-
-### Docker Deployment
-
-To build and run using Docker:
-
-```bash
-docker build -t my-app .
-
-# Run the container
-docker run -p 3000:3000 my-app
-```
-
-The containerized application can be deployed to any platform that supports Docker, including:
-
-- AWS ECS
-- Google Cloud Run
-- Azure Container Apps
-- Digital Ocean App Platform
-- Fly.io
-- Railway
-
-### DIY Deployment
-
-If you're familiar with deploying Node applications, the built-in app server is production-ready.
-
-Make sure to deploy the output of `npm run build`
-
-```
-├── package.json
-├── package-lock.json (or pnpm-lock.yaml, or bun.lockb)
-├── build/
-│   ├── client/    # Static assets
-│   └── server/    # Server-side code
-```
-
-## Styling
-
-This template comes with [Tailwind CSS](https://tailwindcss.com/) already configured for a simple default starting experience. You can use whatever CSS framework you prefer.
-
----
-
-Built with ❤️ using React Router.
-
-# AI RESUME ANALYSER
-
-#### Pages
- - Auth Page
- - Upload Resume Page
- - Resume Review Page
-
-#### TechStack
- - Vite - React Framework
- - Reactjs - interface
- - Puter.js - backend AI
+- Support DOCX uploads  
+- Resume templates  
+- Exportable PDF report  
+- Resume analysis history  
+- Improved ATS breakdown  

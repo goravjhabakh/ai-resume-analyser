@@ -57,7 +57,7 @@ const Upload = () => {
     await kv.set(`resume:${uuid}`, JSON.stringify(data));
     setStatusText('Analysis Complete, redirecting...')
     
-    console.log(data);
+    navigate(`/resume/${uuid}`);
   }
 
   const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
@@ -76,7 +76,7 @@ const Upload = () => {
   }
 
   return (
-    <main className="bg-[url('/images/bg-main.svg')] bg-cover">
+    <main className="bg-[url('/images/bg-main.svg')] bg-cover pt-10">
       <Navbar/>
 
       <section className="main-section">

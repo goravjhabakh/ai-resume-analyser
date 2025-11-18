@@ -85,3 +85,15 @@ This template comes with [Tailwind CSS](https://tailwindcss.com/) already config
 ---
 
 Built with ❤️ using React Router.
+
+# AI RESUME ANALYSER
+
+#### Pages
+ - Auth Page
+ - Upload Resume Page
+ - Resume Review Page
+
+#### TechStack
+ - Vite - React Framework
+ - Reactjs - interface
+ - Puter.js - backend AI
